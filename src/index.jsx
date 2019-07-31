@@ -1,10 +1,9 @@
-import "core-js";
+// @flow
 import _ from 'lodash';
 import React from 'react';
 import {render} from 'react-dom';
 
-console.log([1, [2, 3], [4, [5]]].flat(2));
-function component() {
+function component(array) {
   const element = document.createElement('div');
 
   // Lodash, currently included via a script, is required for this line to work
@@ -13,12 +12,20 @@ function component() {
   return element;
 }
 
-document.body.appendChild(component());
+if (document.body) {
+  document.body.appendChild(component());
+}
 
-class App extends React.Component {
+type Props = {
+};
+
+class App extends React.Component<Props> {
   render() {
     return <p>Hello, React!</p>;
   }
 }
 
-render(<App/>, document.getElementById('app'));
+const elem = document.getElementById('app')
+if (elem) {
+  render(<App/>, elem);
+}
