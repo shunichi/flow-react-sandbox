@@ -1,31 +1,15 @@
 // @flow
-import _ from 'lodash';
-import React from 'react';
-import {render} from 'react-dom';
+import join from 'lodash/join';
 
-function component(array) {
+function component(array: Array<string>) {
   const element = document.createElement('div');
 
   // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = join(array, ' ');
 
   return element;
 }
 
 if (document.body) {
-  document.body.appendChild(component());
-}
-
-type Props = {
-};
-
-class App extends React.Component<Props> {
-  render() {
-    return <p>Hello, React!</p>;
-  }
-}
-
-const elem = document.getElementById('app')
-if (elem) {
-  render(<App/>, elem);
+  document.body.appendChild(component(['Hello', 'webpack']));
 }
